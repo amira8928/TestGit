@@ -1,0 +1,61 @@
+
+
+
+entity Agent {
+	id Integer required,
+    nom String,
+	prenom String,
+    email String,
+    adresse String,
+}
+
+/**
+ * The Employee entity.
+ */
+entity Client {
+	idAgent Integer required,
+	nom String,
+	prenom String,
+    naissance Integer,
+	email String,
+	telephone Integer,
+	salaire Long,
+	commissionPct Long,
+    adresse String
+}
+
+entity Profession {
+    id Integer required,
+    idClient Integer,
+	secteur String,
+	poste String,
+	dateDeb Integer,
+    dateFin Integer
+}
+
+entity Pension {
+	id Integer required,
+    idClient Integer,
+    idProfession Integer
+}
+
+relationship ManyToMany {
+	Agent to Client
+}
+
+relationship OneToOne {
+	Client to Pension
+}
+
+relationship ManyToMany {
+	Agent to Pension
+}
+
+relationship ManyToMany {
+	Client to Profession
+}
+
+
+
+
+

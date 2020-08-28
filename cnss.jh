@@ -1,0 +1,72 @@
+
+entity User {
+    login String,
+	password String  
+}
+
+entity Agent {
+	id Integer required,
+    nom String,
+	prenom String,
+    email String,
+    adresse String,
+}
+
+/**
+ * The Employee entity.
+ */
+entity Client {
+    idClient Integer,
+	nom String,
+	prenom String,
+    naissance Integer,
+	email String,
+	telephone Integer,
+	salaire Long,
+	commissionPct Long,
+    adresse String,
+    idAgent Integer
+}
+
+entity Profession {
+    id Integer required,
+    idClient Integer,
+	secteur String,
+	poste String,
+	dateDeb Integer,
+    dateFin Integer
+}
+
+entity Pension {
+	id Integer required,
+    idClient Integer,
+    idProfession Integer
+}
+
+relationship ManyToMany {
+	User{client(idClient)} to Client{user}
+}
+relationship ManyToMany {
+	User{agent(idAgent)} to Agent{user}
+}
+relationship ManyToMany {
+	Agent{client(idClient)} to Client{agent}
+}
+
+relationship OneToOne {
+	Client{pension} to Pension
+}
+
+relationship ManyToMany {
+	Agent{pension(id)} to Pension{agent}
+}
+
+relationship ManyToMany {
+	Client{profession(id)} to Profession{client}
+}
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+
+
+

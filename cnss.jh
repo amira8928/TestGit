@@ -1,0 +1,51 @@
+
+entity Agent {
+	id Integer,
+    nom String,
+	prenom String,
+    email String,
+    adresse String,
+    tel Integer
+    
+}
+
+entity Client {
+	id Integer ,
+	nom String,
+	prenom String,
+    naissance Integer,
+	email String,
+	telephone Integer,
+    adresse String,
+    sexe String,
+    pension Integer,
+    salaire Integer
+}
+
+entity Profession {
+    id Integer ,
+	employeur String,
+	dateDeb Integer,
+    dateFin Integer,
+    lieu String,
+    ville String,
+    departement String,
+    pays String,
+    periode Integer
+}
+
+relationship OneToMany {
+	Agent{client} to Client{agent(nom)}
+}
+
+relationship OneToOne {
+    Client{profession} to Profession{client(nom)}
+}
+
+
+ dto * with mapstruct
+ service all with serviceImpl
+
+
+
+
